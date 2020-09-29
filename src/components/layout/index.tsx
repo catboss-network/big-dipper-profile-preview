@@ -1,17 +1,15 @@
 import React from 'react';
-import { ThemeProvider } from '@material-ui/core/styles';
-import { useLayoutHook } from './hooks';
+import { useGetStyles } from './styles';
 
 export const Layout = (props: any) => {
   const { children } = props;
-  const { theme } = useLayoutHook();
-
+  const { classes } = useGetStyles();
   return (
-    <ThemeProvider
-      theme={theme}
+    <div
+      className={classes.root}
     >
       {children}
-    </ThemeProvider>
+    </div>
   );
 };
 
