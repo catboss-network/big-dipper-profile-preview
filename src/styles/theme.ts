@@ -28,6 +28,7 @@ export const common = {
 const lightThemeOverride = {
   type: 'light',
   palette: {
+    test: 'pink',
     background: {
       main: 'rgba(246, 247, 249, 1)',
     },
@@ -56,6 +57,7 @@ const lightThemeOverride = {
 const darkThemeOverride = {
   type: 'dark',
   palette: {
+    test: 'purple',
     background: {
       main: 'rgba(10, 10, 10, 1)',
     },
