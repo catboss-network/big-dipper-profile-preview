@@ -28,3 +28,5 @@ npm run dev
   - default just runs lint and test
 - default env file that will load if no `.env` is found
 
+## known issues
+- graphql ssg is not setup
