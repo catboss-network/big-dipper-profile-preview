@@ -36,10 +36,28 @@
   "overrides": [
     {
       "files": [
+        "src/**/types.ts"
+      ],
+      "rules": {
+        "no-unused-vars": "off"
+      }
+    },
+    {
+      "files": [
         "tests/**/*"
       ],
       "rules": {
         "no-undef": "off"
+      }
+    },
+    {
+      "files": [
+        "src/**/*.test.tsx",
+        "src/**/*.test.ts"
+      ],
+      "rules": {
+        "no-undef": "off",
+        "import/no-extraneous-dependencies": "off"
       }
     }
   ],
