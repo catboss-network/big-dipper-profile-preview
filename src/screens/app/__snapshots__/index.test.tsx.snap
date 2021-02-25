@@ -3,7 +3,6 @@
 exports[`screen: _app matches snapshot 1`] = `
 <SettingsProvider>
   <ThemeProvider>
-    <GlobalCss />
     <div
       id="component"
     />

@@ -12,27 +12,60 @@ exports[`screen: Home it renders 1`] = `
   >
     common:welcome
   </h1>
-  <br />
-  <p>
-    common:welcome
-  </p>
-  <p
-    className="MuiTypography-root MuiTypography-body1 MuiTypography-alignRight"
-  >
-    common:welcome
-  </p>
   <div>
     <button
+      className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+      disabled={false}
+      onBlur={[Function]}
       onClick={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
       type="button"
     >
-      change lang
+      <span
+        className="MuiButton-label"
+      >
+        change language
+      </span>
+      <span
+        className="MuiTouchRipple-root"
+      />
     </button>
     <button
+      className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSecondary"
+      disabled={false}
+      onBlur={[Function]}
       onClick={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
       type="button"
     >
-      toggle theme
+      <span
+        className="MuiButton-label"
+      >
+        theme
+      </span>
+      <span
+        className="MuiTouchRipple-root"
+      />
     </button>
   </div>
   <div

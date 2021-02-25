@@ -1,5 +1,7 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
+import {
+  Typography, Button,
+} from '@material-ui/core';
 import useTranslation from 'next-translate/useTranslation';
 import { useSettingsContext } from '@contexts';
 import { useRouter } from 'next/router';
@@ -38,24 +40,21 @@ const Home = () => {
       <Typography variant="h1" align="right">
         {t('common:welcome')}
       </Typography>
-      <br />
-      <p>{t('common:welcome')}</p>
-      <Typography variant="body1" align="right">
-        {t('common:welcome')}
-      </Typography>
       <div>
-        <button
-          type="button"
+        <Button
+          variant="contained"
+          color="primary"
           onClick={handleChangeLanguage}
         >
-          change lang
-        </button>
-        <button
-          type="button"
+          change language
+        </Button>
+        <Button
+          variant="contained"
+          color="secondary"
           onClick={changeTheme}
         >
-          toggle theme
-        </button>
+          theme
+        </Button>
       </div>
       {/* graphql testing */}
       {data.dataOne.map((x) => <div className="currency" key={x.currency}>{x.currency}</div>)}

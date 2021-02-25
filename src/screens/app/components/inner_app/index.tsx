@@ -3,7 +3,6 @@ import { AppProps } from 'next/app';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { useSettingsContext } from '@contexts';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { GlobalCss } from '@styles';
 
 // Separated to use our useSettingsContext hook
 function InnerApp({
@@ -14,7 +13,6 @@ function InnerApp({
   return (
     <ThemeProvider theme={muiTheme}>
       <CssBaseline />
-      <GlobalCss />
       <Component {...pageProps} />
     </ThemeProvider>
   );
