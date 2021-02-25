@@ -1,46 +1,66 @@
 import React from 'react';
-import { useTranslation } from 'i18n';
-import {
-  Example, Layout,
-} from '@components';
-import Button from '@material-ui/core/Button';
-import { useHomeHook } from './hooks';
+import { Typography } from '@material-ui/core';
+import useTranslation from 'next-translate/useTranslation';
+import { useSettingsContext } from '@contexts';
+import { useRouter } from 'next/router';
+import { useStyles } from './styles';
+import { useQueryExample } from './hooks';
 
 const Home = () => {
-  const { t } = useTranslation('common');
   const {
-    data,
-    loading,
-    error,
-  } = useHomeHook();
+    t,
+    lang,
+  } = useTranslation();
+  const classes = useStyles();
+  const router = useRouter();
+  const data = useQueryExample();
 
-  if (error) {
-    console.log('there is an error');
-  }
+  const handleChangeLanguage = () => {
+    if (lang === 'zht') {
+      router.push(router.pathname, router.pathname, {
+        locale: 'en',
+      });
+    } else {
+      router.push(router.pathname, router.pathname, {
+        locale: 'zht',
+      });
+    }
+  };
+  const { toggleThemeMode } = useSettingsContext();
+
+  const changeTheme = () => {
+    toggleThemeMode();
+  };
 
   return (
-    <Layout>
-      <Button
-        variant="contained"
-        color="primary"
-      >
-        Hello World
-      </Button>
-      <h1>{t('bigDipper')}</h1>
-      <h1>{t('forbole')}</h1>
-      <p>
-        home page on port
-      </p>
-      {!loading && <h3>done loading!</h3>}
-      {!loading && !error && data.rates.slice(0, 7).map((x) => (
-        <p
-          key={x.currency}
+    <div className={classes.root}>
+      <h1>{t('common:welcome')}</h1>
+      <Typography variant="h1" align="right">
+        {t('common:welcome')}
+      </Typography>
+      <br />
+      <p>{t('common:welcome')}</p>
+      <Typography variant="body1" align="right">
+        {t('common:welcome')}
+      </Typography>
+      <div>
+        <button
+          type="button"
+          onClick={handleChangeLanguage}
         >
-          {x.currency}
-        </p>
-      ))}
-      <Example />
-    </Layout>
+          change lang
+        </button>
+        <button
+          type="button"
+          onClick={changeTheme}
+        >
+          toggle theme
+        </button>
+      </div>
+      {/* graphql testing */}
+      {data.dataOne.map((x) => <div className="currency" key={x.currency}>{x.currency}</div>)}
+      {data.dataTwo.map((x) => <div className="rate" key={x.rate}>{x.rate}</div>)}
+    </div>
   );
 };
 

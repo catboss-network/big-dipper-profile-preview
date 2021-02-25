@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`screen: Home it renders 1`] = `
+<div
+  className="makeStyles-root-4"
+>
+  <h1>
+    common:welcome
+  </h1>
+  <h1
+    className="MuiTypography-root MuiTypography-h1 MuiTypography-alignRight"
+  >
+    common:welcome
+  </h1>
+  <br />
+  <p>
+    common:welcome
+  </p>
+  <p
+    className="MuiTypography-root MuiTypography-body1 MuiTypography-alignRight"
+  >
+    common:welcome
+  </p>
+  <div>
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      change lang
+    </button>
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      toggle theme
+    </button>
+  </div>
+  <div
+    className="currency"
+  >
+    AKT
+  </div>
+  <div
+    className="rate"
+  >
+    0.1
+  </div>
+</div>
+`;

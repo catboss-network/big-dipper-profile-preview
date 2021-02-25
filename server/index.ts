@@ -1,15 +1,16 @@
-/* eslint-disable */
-import 'dotenv-defaults/config';
-import express, { Request, Response } from 'express';
+/* eslint-disable no-console */
+import express, {
+  Request, Response,
+} from 'express';
 import next from 'next';
 import cors from 'cors';
 
-const dev = process.env.NODE_ENV !== 'production';
+const isDev = process.env.NODE_ENV !== 'production';
 const app = next({
-  dev,
+  dev: isDev,
 });
 const handle = app.getRequestHandler();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 (async () => {
   try {
@@ -24,9 +25,9 @@ const port = process.env.PORT;
     server.listen(port, (err?: any) => {
       if (err) throw err;
       console.log('> Blast Off Ready On:');
-      console.log(`> URL: http://localhost:${process.env.PORT}`);
-      console.log(`> ENV: ${process.env.NODE_ENV}`);
-      console.log(`> PORT: ${process.env.PORT}`);
+      console.log(`> URL: http://localhost:${port}`);
+      console.log(`> ENV: ${process.env.NODE_ENV || 'development'}`);
+      console.log(`> PORT: ${port}`);
     });
   } catch (e) {
     console.error(e);

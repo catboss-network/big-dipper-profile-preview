@@ -26,7 +26,10 @@
         "src/components"
       ],
       "@icons": [
-        "src/components/icons"
+        "src/assets/icons"
+      ],
+      "@hooks": [
+        "src/hooks"
       ],
       "@screens/*": [
         "src/screens/*"
@@ -40,6 +43,9 @@
       "@utils/*": [
         "src/utils/*"
       ],
+      "@contexts": [
+        "src/contexts"
+      ],
       "@graphql": [
         "src/graphql"
       ],
@@ -49,8 +55,8 @@
       "@graphql/mutations": [
         "src/graphql/mutations"
       ],
-      "@tests/utils/*": [
-        "tests/utils/*"
+      "@tests/utils": [
+        "tests/utils"
       ]
     }
   },
@@ -58,7 +64,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "tests/utils/mock_react_i18next.js",
+    "tests/utils/mock_i18n.js",
     "tests/utils/mock_apollo_provider.tss"
   ],
   "exclude": [

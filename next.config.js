@@ -1,13 +1,11 @@
-const { nextI18NextRewrites } = require('next-i18next/rewrites');
+const nextTranslate = require('next-translate');
 
-const localeSubpaths = {
-  fr: 'fr',
-  de: 'german',
-};
-
-module.exports = {
-  rewrites: async () => nextI18NextRewrites(localeSubpaths),
-  publicRuntimeConfig: {
-    localeSubpaths,
+module.exports = nextTranslate({
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    });
+    return config;
   },
-};
+});

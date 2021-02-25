@@ -1,78 +1,94 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import Home from '@screens/home';
-import { WithMockApolloProvider } from '@tests/utils/mock_apollo_provider';
-import { awaitActions } from '@tests/utils/await_actions';
-import { queryExample } from '@graphql/queries';
-import { Example } from '@components';
+import renderer from 'react-test-renderer';
+import { ApolloProvider } from '@apollo/client';
+import {
+  createMockClient, MockApolloClient,
+} from 'mock-apollo-client';
+import { QUERIES } from '@graphql/queries';
+import { wait } from '@tests/utils';
+import Home from '.';
 
-const mocks = [
-  {
-    request: {
-      query: queryExample,
-      variables: {
+// ==================================
+// global setup
+// ==================================
+let component;
+let mockClient:MockApolloClient;
+
+// ==================================
+// mocks
+// ==================================
+jest.mock('@contexts', () => ({
+  useSettingsContext: () => ({
+  }),
+}));
+
+const mockExample = jest.fn().mockResolvedValue({
+  data: {
+    rates: [
+      {
+        currency: 'AKT',
       },
-    },
-    result: {
-      data: {
-        rates: [
-          {
-            currency: 'usd',
-          },
-          {
-            currency: 'hkd',
-          },
-        ],
+      {
+        currency: 'UNI',
       },
-    },
+    ],
   },
-];
+});
 
-describe('Home', () => {
-  it('it renders', () => {
-    const wrapper = mount(
-      WithMockApolloProvider({
-        component: <Home />,
-        mocks,
-      }),
+const mockExampleTwo = jest.fn().mockResolvedValue({
+  data: {
+    rates: [
+      {
+        rate: '0.1',
+      },
+      {
+        rate: '0.2',
+      },
+    ],
+  },
+});
+
+// ==================================
+// unit tests
+// ==================================
+describe('screen: Home', () => {
+  beforeEach(async () => {
+    mockClient = createMockClient();
+    mockClient.setRequestHandler(
+      QUERIES.QUERY_EXAMPLE_TWO,
+      mockExampleTwo,
     );
 
-    expect(
-      wrapper.find(Example),
-    ).not.toBeNull();
+    mockClient.setRequestHandler(
+      QUERIES.QUERY_EXAMPLE,
+      mockExample,
+    );
 
-    expect(
-      wrapper.find('h1'),
-    ).toHaveLength(2);
-
-    expect(
-      wrapper.find('h1').first().text(),
-    ).toBe('bigDipper');
-
-    expect(
-      wrapper.find('h1').last().text(),
-    ).toBe('forbole');
+    renderer.act(() => {
+      component = renderer.create(
+        <ApolloProvider client={mockClient}>
+          <Home />
+        </ApolloProvider>,
+      );
+    });
+    await wait();
   });
 
-  it('correctly renders Home component with hooks', async () => {
-    const wrapper = mount(
-      WithMockApolloProvider({
-        component: <Home />,
-        mocks,
-      }),
-    );
+  it('it renders', async () => {
+    const tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+    expect(component.root.findAllByType('h1')[0].children).toEqual(['common:welcome']);
+    expect(component.root.findAllByProps({
+      className: 'currency',
+    })[0].children).toEqual(['AKT']);
+    expect(component.root.findAllByProps({
+      className: 'rate',
+    })[0].children).toEqual(['0.1']);
+    expect(mockExample).toBeCalledTimes(1);
+    expect(mockExampleTwo).toBeCalledTimes(1);
+  });
 
-    await awaitActions({
-      wrapper,
-      time: 10,
-    });
-
-    expect(
-      wrapper.find('h1').last().text(),
-    ).toBe('forbole');
-
-    expect(
-      wrapper.find('h3').first().text(),
-    ).toEqual('done loading!');
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 });

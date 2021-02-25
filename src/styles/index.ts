@@ -1,13 +1,11 @@
 import {
-  darkTheme, lightTheme,
+  darkTheme,
+  lightTheme,
 } from './theme';
-import {
-  getMaxMediaQuery, getMinMediaQuery,
-} from './utils';
+import GlobalCss from './global';
 
 export {
   darkTheme,
   lightTheme,
-  getMinMediaQuery,
-  getMaxMediaQuery,
+  GlobalCss,
 };

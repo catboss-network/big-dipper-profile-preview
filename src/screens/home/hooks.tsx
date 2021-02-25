@@ -1,14 +1,27 @@
+import { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { queryExample } from '@graphql/queries';
+import {
+  QUERIES, QUERY_PARSERS,
+} from '@graphql/queries';
 
-export const useHomeHook = () => {
-  const {
-    loading, error, data,
-  } = useQuery(queryExample);
+export const useQueryExample = () => {
+  const [exampleData, setData] = useState<any[]>([]);
+  const [exampleTwo, setDataTwo] = useState<any[]>([]);
+
+  useQuery(QUERIES.QUERY_EXAMPLE, {
+    onCompleted: (data) => {
+      setData(QUERY_PARSERS.parseQueryExample(data));
+    },
+  });
+
+  useQuery(QUERIES.QUERY_EXAMPLE_TWO, {
+    onCompleted: (data) => {
+      setDataTwo(QUERY_PARSERS.parseQueryExample(data));
+    },
+  });
 
   return {
-    loading,
-    error,
-    data,
+    dataOne: exampleData,
+    dataTwo: exampleTwo,
   };
 };
