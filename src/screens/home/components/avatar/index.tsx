@@ -20,6 +20,10 @@ const Avatar: React.FC<{
     jdenticon.update(icon.current, address);
   }, [address, error]);
 
+  useEffect(() => {
+    setError(false);
+  }, [imageUrl]);
+
   const handleError = () => {
     setError(true);
   };
