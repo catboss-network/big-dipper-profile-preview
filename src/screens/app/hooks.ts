@@ -1,14 +1,22 @@
 import { useEffect } from 'react';
-import useTranslation from 'next-translate/useTranslation';
+import * as jdenticon from 'jdenticon';
 
 export const useApp = () => {
-  // ==========================
-  // language
-  // ==========================
-  const { lang } = useTranslation();
   useEffect(() => {
-    document.cookie = `NEXT_LOCALE=${lang}`;
-  }, [lang]);
+    // jdenticon theme
+    jdenticon.configure({
+      hues: [207],
+      lightness: {
+        color: [0.84, 0.84],
+        grayscale: [0.84, 0.84],
+      },
+      saturation: {
+        color: 0.48,
+        grayscale: 0.48,
+      },
+      backColor: '#2a4766',
+    });
+  }, []);
 
   // ==========================
   // css

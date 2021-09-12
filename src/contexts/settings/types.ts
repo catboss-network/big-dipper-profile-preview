@@ -1,7 +1,11 @@
-export type Theme = 'light' | 'dark';
+export type Theme = 'light' | 'dark' | 'device' | 'deuteranopia' | 'tritanopia' | 'achromatopsia';
 
-export interface SettingsState {
+export interface ThemeState {
   theme: Theme;
   muiTheme: any;
-  toggleThemeMode?: () => void;
+  themeSelection: string;
+  themeList: string[];
+  changeTheme?: (value: string) => void;
 }
+
+export type SettingsState = ThemeState;

@@ -1,9 +1,9 @@
 import {
-  darkTheme,
-  lightTheme,
+  lightTemplate,
+  darkTemplate,
 } from './theme';
 
 export {
-  darkTheme,
-  lightTheme,
+  lightTemplate,
+  darkTemplate,
 };
