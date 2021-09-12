@@ -1,0 +1,1 @@
+{"ast":null,"code":"import '@src/styles/global.css';\nimport App from '../screens/app';\nexport default App;","map":null,"metadata":{},"sourceType":"module"}
