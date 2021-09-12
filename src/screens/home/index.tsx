@@ -13,11 +13,11 @@ const Home = () => {
   const {
     state, handleFormChange,
   } = useHome();
-  const displayNameCode = state.displayName ? `--nickname "${state.displayName}"` : '';
-  const profileCode = state.profileUrl ? `--profile-pic "${state.profileUrl}"` : '';
-  const coverCode = state.coverUrl ? `--cover-pic "${state.coverUrl}"` : '';
+  const displayNameCode = state.displayName ? `--nickname "${state.displayName}" \\` : '';
+  const profileCode = state.profileUrl ? `--profile-pic "${state.profileUrl}" \\` : '';
+  const coverCode = state.coverUrl ? `--cover-pic "${state.coverUrl}" \\` : '';
   const bioCode = state.bio ? `--bio "${state.bio}"` : '';
-  const intro = `desmos tx profiles save ${state.dtag || '<dtag required>'} \n ${displayNameCode} \n ${profileCode} \n ${coverCode} \n ${bioCode}`;
+  const intro = `desmos tx profiles save ${state.dtag || '<dtag required>'} \\ \n ${displayNameCode} \n ${profileCode} \n ${coverCode} \n ${bioCode}`;
 
   return (
     <div className={classes.root}>
@@ -89,6 +89,9 @@ const Home = () => {
             </Typography>
             <Typography>
               Support us if this was useful ヾ(=`ω´=)ノ”
+            </Typography>
+            <Typography component="a" href="https://catboss.network" rel="noopener noreferrer" target="_blank">
+              https://catboss.network
             </Typography>
           </div>
         </div>
