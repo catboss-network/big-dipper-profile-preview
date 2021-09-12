@@ -1,30 +1,44 @@
 import React from 'react';
-import { lightTheme } from '@styles';
-import { useTheme } from './hooks';
-import { SettingsState } from './types';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { lightTemplate } from '@styles';
+import {
+  useTheme,
+} from './hooks';
+import {
+  SettingsState,
+  ThemeState,
+} from './types';
 
-const initialState: SettingsState = {
+const initialThemeState: ThemeState = {
   theme: 'light',
-  muiTheme: lightTheme,
+  themeSelection: 'device',
+  muiTheme: createMuiTheme(lightTemplate),
+  themeList: [],
 };
 
-const SettingsContext = React.createContext<SettingsState>(initialState);
+const SettingsContext = React.createContext<SettingsState>({
+  ...initialThemeState,
+});
 
-const SettingsProvider: React.FC = (props: {children: React.ReactNode }) => {
+const SettingsProvider: React.FC = (props: {children: React.ReactNode}) => {
   const { children } = props;
 
   const {
     theme,
     muiTheme,
-    toggleThemeMode,
-  } = useTheme(initialState);
+    themeSelection,
+    changeTheme,
+    themeList,
+  } = useTheme(initialThemeState);
 
   return (
     <SettingsContext.Provider
       value={{
         theme,
+        themeSelection,
         muiTheme,
-        toggleThemeMode,
+        changeTheme,
+        themeList,
       }}
     >
       {children}

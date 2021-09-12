@@ -28,11 +28,12 @@ html {
 
 body {
   font-family: "Hind Madurai", sans-serif;
+  font-size: 16px;
 }
 
 a {
-  text-decoration: 'none';
-  color: 'inherit';
+  text-decoration: none;
+  color: #56B4E9;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -88,4 +89,12 @@ button {
   font-size: 0.875rem;
   letter-spacing: 1.25px;
   text-transform: none;
+}
+
+svg {
+  fill: #999999;
+}
+
+.scrollbar::-webkit-scrollbar {
+  display: none;
 }

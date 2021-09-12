@@ -1,16 +1,12 @@
 import React from 'react';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
-import { ApolloProvider } from '@apollo/client';
-import { useApollo } from '@src/graphql/client';
 import { SettingsProvider } from '@contexts';
 import { InnerApp } from './components';
 import { useApp } from './hooks';
 
 function App(props: AppProps) {
   useApp();
-  const { pageProps } = props;
-  const apolloClient = useApollo(pageProps.initialApolloState);
   return (
     <>
       <Head>
@@ -25,13 +21,9 @@ function App(props: AppProps) {
         <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#5bbad5" />
         <link rel="shortcut icon" href="/icons/favicon.ico" />
       </Head>
-      <ApolloProvider
-        client={apolloClient}
-      >
-        <SettingsProvider>
-          <InnerApp {...props} />
-        </SettingsProvider>
-      </ApolloProvider>
+      <SettingsProvider>
+        <InnerApp {...props} />
+      </SettingsProvider>
     </>
   );
 }

@@ -1,39 +1,66 @@
-import { useEffect } from 'react';
 import {
-  darkTheme,
-  lightTheme,
+  useEffect,
+  useState,
+} from 'react';
+import { createMuiTheme } from '@material-ui/core/styles';
+import {
+  lightTemplate,
+  darkTemplate,
 } from '@styles';
 import { usePersistedState } from '@hooks';
-import { SettingsState } from './types';
+import {
+  Theme,
+  ThemeState,
+} from './types';
 
 /**
  *
  * @param initialState
  */
-export const useTheme = (initialState:SettingsState) => {
-  const [theme, setTheme] = usePersistedState('theme', initialState.theme);
+export const useTheme = (initialState:ThemeState) => {
+  const [theme, setTheme] = useState(initialState.theme);
+  const [themeSelection, setThemeSelection] = usePersistedState('themeSelection', initialState.themeSelection);
+
+  const themeList = [
+    'light',
+    'dark',
+    'deuteranopia',
+    'tritanopia',
+  ];
+
+  const themeDictionary = {
+    light: lightTemplate,
+    dark: darkTemplate,
+  };
 
   useEffect(() => {
-    // checks browser preference if theme isn't persisted
-    const persistedTheme = localStorage.getItem('theme');
     const isClient = typeof window === 'object';
-    if (
-      !persistedTheme
-      && isClient
-      && window?.matchMedia('(prefers-color-scheme: dark)')?.matches
-    ) {
-      setTheme('dark');
+    if (themeSelection === 'device') {
+      if (
+        isClient
+        && window?.matchMedia('(prefers-color-scheme: dark)')?.matches
+      ) {
+        setTheme('dark');
+      }
+    } else if (themeDictionary[themeSelection]) {
+      setTheme(themeSelection as Theme);
+    } else {
+      setTheme('light');
     }
-  }, []);
+  }, [themeSelection]);
 
-  const toggleThemeMode = () => {
-    const value = theme === 'light' ? 'dark' : 'light';
-    setTheme(value);
+  const changeTheme = (value: string) => {
+    if (themeDictionary[value]) {
+      setThemeSelection(value);
+    }
   };
 
   return {
     theme,
-    muiTheme: theme === 'dark' ? darkTheme : lightTheme,
-    toggleThemeMode,
+    muiTheme: createMuiTheme(themeDictionary[theme] || lightTemplate),
+    themeSelection,
+    themeList,
+    themeDictionary,
+    changeTheme,
   };
 };
