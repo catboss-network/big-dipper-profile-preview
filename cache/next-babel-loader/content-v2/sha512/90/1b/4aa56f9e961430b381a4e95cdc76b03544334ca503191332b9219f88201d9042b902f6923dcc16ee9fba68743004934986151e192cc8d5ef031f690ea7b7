@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { lightTemplate, darkTemplate } from './theme';\nexport { lightTemplate, darkTemplate };","map":null,"metadata":{},"sourceType":"module"}

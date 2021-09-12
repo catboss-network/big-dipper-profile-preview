@@ -1,1 +1,0 @@
-{"ast":null,"code":"import InnerApp from './inner_app';\nexport { InnerApp };","map":null,"metadata":{},"sourceType":"module"}
