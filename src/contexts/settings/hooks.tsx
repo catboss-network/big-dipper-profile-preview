@@ -40,7 +40,7 @@ export const useTheme = (initialState:ThemeState) => {
         isClient
         && window?.matchMedia('(prefers-color-scheme: dark)')?.matches
       ) {
-        setTheme('dark');
+        setTheme('light');
       }
     } else if (themeDictionary[themeSelection]) {
       setTheme(themeSelection as Theme);
