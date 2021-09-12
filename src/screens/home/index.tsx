@@ -91,7 +91,25 @@ const Home = () => {
               Support us if this was useful ヾ(=`ω´=)ノ”
             </Typography>
             <Typography component="a" href="https://catboss.network" rel="noopener noreferrer" target="_blank">
-              https://catboss.network
+              Cat Boss
+            </Typography>
+            <Typography component="span">
+              &nbsp;|&nbsp;
+            </Typography>
+            <Typography component="a" href="https://twitter.com/catboss_network" rel="noopener noreferrer" target="_blank">
+              Twitter
+            </Typography>
+            <Typography component="span">
+              &nbsp;|&nbsp;
+            </Typography>
+            <Typography component="a" href="https://catboss.medium.com/" rel="noopener noreferrer" target="_blank">
+              Medium
+            </Typography>
+            <Typography component="span">
+              &nbsp;|&nbsp;
+            </Typography>
+            <Typography component="a" href="https://github.com/catboss-network" rel="noopener noreferrer" target="_blank">
+              Github
             </Typography>
           </div>
         </div>
