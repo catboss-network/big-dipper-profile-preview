@@ -98,3 +98,16 @@ svg {
 .scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+
+code {
+  background-color: rgb(34, 34, 34);
+}
+
+pre code {
+  background-color: rgb(34, 34, 34);
+  display: block;
+  padding: 20px;
+  overflow: auto;
+  color: #eee;
+}

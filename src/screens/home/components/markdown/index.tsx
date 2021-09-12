@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactMarkdown from 'markdown-to-jsx';
-import DOMPurify from 'dompurify';
+import DOMPurify from 'isomorphic-dompurify';
 // import { withStyles } from '@material-ui/core/styles';
 import {
   Typography,
@@ -87,7 +87,7 @@ const options = {
 export default function Markdown(props: {
   markdown: string
 }) {
-  const clean = DOMPurify.sanitize(props.markdown);
+  const clean = DOMPurify?.sanitize(props.markdown);
   return (
     <ReactMarkdown
       options={options}

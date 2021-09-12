@@ -19,11 +19,13 @@ export const useStyles = () => {
             boxShadow: '5px 7px 7px -2px #727272',
           },
         },
+        leftWrapper: {
+          width: '400px',
+          marginRight: theme.spacing(4),
+        },
         form: {
           display: 'flex',
           flexDirection: 'column',
-          width: '400px',
-          marginRight: theme.spacing(2),
           '& .MuiInputBase-root': {
             width: '100%',
             marginBottom: theme.spacing(1),
@@ -37,6 +39,13 @@ export const useStyles = () => {
         },
         desktop: {
           width: '1024px',
+        },
+        credits: {
+          margin: theme.spacing(2, 0),
+          textAlign: 'center',
+        },
+        divider: {
+          margin: theme.spacing(2, 0, 3),
         },
       });
     },

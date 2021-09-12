@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Typography,
   TextField,
+  Divider,
 } from '@material-ui/core';
 import { useStyles } from './styles';
 import { useHome } from './hooks';
@@ -12,18 +13,29 @@ const Home = () => {
   const {
     state, handleFormChange,
   } = useHome();
+  const displayNameCode = state.displayName ? `--nickname "${state.displayName}"` : '';
+  const profileCode = state.profileUrl ? `--profile-pic "${state.profileUrl}"` : '';
+  const coverCode = state.coverUrl ? `--cover-pic "${state.coverUrl}"` : '';
+  const bioCode = state.bio ? `--bio "${state.bio}"` : '';
+  const intro = `desmos tx profiles save ${state.dtag || '<dtag required>'} \n ${displayNameCode} \n ${profileCode} \n ${coverCode} \n ${bioCode}`;
+
   return (
     <div className={classes.root}>
-      <Typography variant="h1">Big Dipper 2.0 Desmos Profile Preview</Typography>
+      <Typography
+        variant="h1"
+      >
+        Big Dipper 2.0 Desmos Profile Preview
+      </Typography>
       <Typography>
         For users who want to see what their profile will look like before signing a transactions
       </Typography>
+      <Divider className={classes.divider} />
       <div className={classes.contentWrapper}>
-        <div>
+        <div className={classes.leftWrapper}>
           <form noValidate autoComplete="off" className={classes.form}>
             <TextField
               id="filled-name"
-              label="Dtag"
+              label="Dtag (at least 6 characters)"
               value={state.dtag}
               onChange={(e) => handleFormChange('dtag', e?.target?.value)}
               variant="outlined"
@@ -57,13 +69,28 @@ const Home = () => {
               id="filled-name"
               label="Bio"
               multiline
-              rows={5}
+              rows={7}
               value={state.bio}
               onChange={(e) => handleFormChange('bio', e?.target?.value)}
               variant="outlined"
               size="small"
             />
           </form>
+          <div>
+            <pre>
+              <code>
+                {intro}
+              </code>
+            </pre>
+          </div>
+          <div className={classes.credits}>
+            <Typography>
+              Maintained by Cat Boss
+            </Typography>
+            <Typography>
+              Support us if this was useful ヾ(=`ω´=)ノ”
+            </Typography>
+          </div>
         </div>
         <div className={classes.preview}>
           <div className={classes.mobile}>

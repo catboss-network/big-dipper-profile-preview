@@ -18,7 +18,7 @@ const DesmosProfile: React.FC<{
 
   return (
     <Box className={classnames(props.className, classes.root, props.mode)}>
-      <div className={classes.cover}>
+      <div className={classnames(classes.cover, props.mode)}>
         <div className="cover" />
       </div>
 
@@ -26,7 +26,7 @@ const DesmosProfile: React.FC<{
         <Avatar
           address={props.dtag}
           imageUrl={props.imageUrl}
-          className={classes.avatar}
+          className={classnames(classes.avatar, props.mode)}
         />
         <Typography
           variant="body1"
